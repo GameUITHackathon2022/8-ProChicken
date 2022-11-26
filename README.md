@@ -13,7 +13,7 @@ PCV là một nền tảng cho phép kết nối người tình nguyện với n
 - Đầu tiên mở một sever tạo 1 database pcv sau đó import file pcv.sql để lấy thông tin cho database
 - Run cmd ở folder chứa file pcv.jar và nhập dòng lệnh sau: java -jar pcv.jar để chạy file backend (yêu cầu máy đã tải Java JRE, JDK và Apache Maven sau đó cài đặt biến môi trường JAVA_HOME và MAVEN_HOME)
 - Tại folder chứa project Run cmd và nhập dòng lệnh: npm install
-- Sau đó nhập lệnh npm start và trải nghiệm webapp
+- Sau đó nhập lệnh npm start và trải nghiệm ứng dụng
 ## Hướng dẫn sử dụng webapp PCV:
 - Tạo một tài khoản để vào trang web
 - Người dùng có thể vào xem thông tin các hoạt động tình nguyện đang diễn ra và tham gia các hoạt động đó
