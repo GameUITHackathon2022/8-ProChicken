@@ -80,7 +80,8 @@ export default function ParticipantsPage() {
             <TableRow>
               <StyledTableCell>Tên ứng viên</StyledTableCell>
               <StyledTableCell align="right">Email</StyledTableCell>
-              <StyledTableCell align="right">Địa điểm</StyledTableCell>
+              <StyledTableCell align="right">MSSV</StyledTableCell>
+              <StyledTableCell align="right">Tổ chức</StyledTableCell>
               <StyledTableCell align="right">Xác nhận</StyledTableCell>
             </TableRow>
           </TableHead>
@@ -92,8 +93,13 @@ export default function ParticipantsPage() {
                 </StyledTableCell>
                 <StyledTableCell align="right">{user?.email}</StyledTableCell>
                 <StyledTableCell align="right">
-                  {user?.location || "Ho Chi Minh"}
+                  {user?.studentCode || "Ko có"}
                 </StyledTableCell>
+
+                <StyledTableCell align="right">
+                  {user?.company || "Ko có"}
+                </StyledTableCell>
+
                 <StyledTableCell align="right" sx={{ padding: 0 }}>
                   <Button onClick={() => handleApproved(user?.id, eventId)}>
                     <CheckCircleIcon color="#fff" />
