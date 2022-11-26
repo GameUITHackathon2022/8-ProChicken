@@ -16,7 +16,6 @@ import UserProvider from "./context/UserContext";
 import HomePage from "./pages/Homepage";
 import ProfileDetailPage from "./pages/ProfileDetailPage";
 import YourEvents from "./pages/YourEvents";
-import ProfileDetail from "./pages/ProfileDetail";
 import JoinedEventsPage from "./pages/JoinedEventsPage";
 import SignInPage from "./pages/SigninPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -41,7 +40,6 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Root />}>
         <Route index element={<HomePage />} />
-        <Route path="profile-detail" element={<ProfileDetail />} />
         <Route path="joined-events" element={<JoinedEventsPage />} />
         <Route path="your-events" element={<YourEvents />} />
         <Route path="user-detail" element={<ProfileDetailPage />} />

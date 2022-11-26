@@ -23,6 +23,9 @@ const deleteEventByIdUrl = (id) => {
 const joinEventUrl = (userId, eventId) =>
   `joiningevent?user_id=${userId}&event_id=${eventId}`;
 
+const approveUrl = (userId, eventId) =>
+  `approve?user_id=${userId}&event_id=${eventId}`;
+
 export const getUsers = async () => {
   try {
     const { data } = await axios.get(getListUserUrl);
@@ -98,8 +101,7 @@ export const getEventById = async (eventId) => {
 
 export const createEvent = async (event) => {
   try {
-    const { data } = await axios.post(createEventUrl, event);
-
+    const { data } = await axios.post("http://localhost:8080/event", event);
     console.log("backend", data);
     return data;
   } catch (err) {
@@ -122,6 +124,16 @@ export const joiningEvent = async (userId, eventId) => {
   try {
     const { data } = await axios.post(joinEventUrl(userId, eventId));
     console.log(data);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const approveUser = async (userId, eventId) => {
+  try {
+    const { data } = await axios.post(approveUrl(userId, eventId));
+    console.log("approved user", data);
     return data;
   } catch (err) {
     console.log(err);

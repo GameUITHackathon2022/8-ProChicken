@@ -68,13 +68,13 @@ const SignUpPage = () => {
     <div className="mt-2 mx-auto max-w-[500px]">
       <form
         onSubmit={handleSubmit(handleSignUp)}
-        className="p-5 border-2 border-orange-400 rounded-md w-[500px]"
+        className="p-5 border-2 border-primary rounded-md w-[500px]"
       >
-        <h2 className="mb-10 text-2xl font-semibold text-center">Sign Up</h2>
+        <h2 className="mb-10 text-2xl font-semibold text-center">Đăng Ký</h2>
         <div className="md:flex justify-center gap-3">
           <div className="flex flex-col font-semibold gap-3">
             <label htmlFor="name" className="flex items-center gap-x-2">
-              Name
+              Tên
               <span className="text-red-500">*</span>
             </label>
             <Input
@@ -100,7 +100,7 @@ const SignUpPage = () => {
         <div className="md:flex justify-center gap-x-3">
           <div className="flex flex-col font-semibold gap-3">
             <label htmlFor="password" className="flex items-center gap-x-2">
-              Password
+              Mật khẩu
               <span className="text-red-500">*</span>
             </label>
             <Input
@@ -112,7 +112,7 @@ const SignUpPage = () => {
           </div>
           <div className="flex flex-col font-semibold gap-3">
             <label htmlFor="confirm" className="flex items-center gap-x-2">
-              Confirm password
+              Xác nhận mật khẩu
               <span className="text-red-500">*</span>
             </label>
             <Input
@@ -125,7 +125,7 @@ const SignUpPage = () => {
         </div>
         <div className="md:flex justify-center gap-x-3">
           <div className="flex flex-col font-semibold gap-3">
-            <label htmlFor="company">Your company</label>
+            <label htmlFor="company">Tổ chức</label>
             <Input
               control={control}
               name="company"
@@ -147,7 +147,7 @@ const SignUpPage = () => {
         </div>
         <div className="flex justify-center w-full flex-col font-semibold gap-y-3">
           <label htmlFor="location">
-            Your location here <span className="text-red-500">*</span>
+            Địa chỉ <span className="text-red-500">*</span>
           </label>
           <Input
             control={control}
@@ -157,16 +157,16 @@ const SignUpPage = () => {
           ></Input>
         </div>
         <button
-          className="w-full p-3 mt-5 text-white bg-orange-300 rounded-md
-          hover:bg-orange-500 transition"
+          className="w-full p-3 mt-5 text-white bg-primary rounded-md
+          hover:bg-green-700 transition"
           type="submit"
         >
-          Submit
+          Đăng ký
         </button>
         <div className="flex gap-x-3 my-5">
-          <p>Already a member?</p>
-          <NavLink to="/signin" className="">
-            Signin
+          <p>Đã là thành viên?</p>
+          <NavLink to="/signin" className="text-primary">
+            Đăng nhập
           </NavLink>
         </div>
       </form>

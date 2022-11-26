@@ -16,9 +16,9 @@ const SignInPage = () => {
   const handleSignIn = async (value) => {
     try {
       const userBack = await signinUser(value.email, value.password);
-
       setUser(userBack);
       localStorage.setItem("user", JSON.stringify(userBack));
+      toast.success("Đăng nhập thành công");
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -29,10 +29,10 @@ const SignInPage = () => {
   return (
     <div className="h-[100vh] px-10">
       <form
-        className="p-5 border-2 border-orange-400 rounded-md mx-auto mt-20 max-w-lg"
+        className="p-5 border-2 border-primary rounded-md mx-auto mt-20 max-w-lg"
         onSubmit={handleSubmit(handleSignIn)}
       >
-        <h2 className="mb-10 text-2xl font-semibold text-center">Sign In</h2>
+        <h2 className="mb-10 text-2xl font-semibold text-center">Đăng Nhập</h2>
         <div className="flex flex-col font-semibold gap-y-3">
           <label htmlFor="email">Email</label>
           <Input
@@ -43,7 +43,7 @@ const SignInPage = () => {
           ></Input>
         </div>
         <div className="flex flex-col font-semibold gap-y-3">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Mật khẩu</label>
           <Input
             control={control}
             name="password"
@@ -53,15 +53,17 @@ const SignInPage = () => {
         </div>
         <button
           type="submit"
-          className="w-full p-3 mt-5 text-white bg-orange-300 rounded-md 
-            hover:bg-orange-500 transition
+          className="w-full p-3 mt-5 text-white bg-primary rounded-md 
+            hover:bg-green-800 transition
           "
         >
-          Submit
+          Đăng nhập
         </button>
         <div className="flex gap-x-4 mt-4">
-          <p>Not a member?</p>
-          <NavLink to="/signup">Signup</NavLink>
+          <p>Chưa là thành viên?</p>
+          <NavLink to="/signup" className={"text-primary"}>
+            Đăng ký
+          </NavLink>
         </div>
       </form>
     </div>

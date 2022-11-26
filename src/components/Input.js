@@ -10,7 +10,7 @@ const Input = ({ control, name = "", type = "text", ...props }) => {
 
   return (
     <input
-      className="p-3 mb-6 border-2 border-orange-400 rounded-md w-[100%] transition"
+      className="p-3 mb-6 border-2 border-primary rounded-md w-[100%] transition"
       type={type}
       id={name}
       {...field}

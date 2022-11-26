@@ -10,6 +10,8 @@ import Paper from "@mui/material/Paper";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useParams } from "react-router-dom";
+import { approveUser, getUsers } from "../api/user";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -31,19 +33,42 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
 export default function ParticipantsPage() {
+  const [users, setUsers] = React.useState([]);
+  const [joinedUsers, setJoinedUsers] = React.useState([]);
+  const { eventId } = useParams();
+  React.useEffect(() => {
+    const getAllUsers = async () => {
+      try {
+        const allUsers = await getUsers();
+        setUsers(allUsers);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getAllUsers();
+  }, [joinedUsers]);
+
+  let tempUsers = [];
+  for (let user of users) {
+    const isBreak = false;
+    for (let eventIdByUser of user.listEvent) {
+      if (eventIdByUser === parseInt(eventId)) {
+        tempUsers.push(user);
+      }
+    }
+  }
+
+  const handleApproved = async (userId, eventId) => {
+    try {
+      const data = await approveUser(userId, eventId);
+      const filteredUser = joinedUsers.filter((user) => user.id !== data.id);
+      setJoinedUsers(filteredUser);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Container sx={{ marginTop: "40px" }}>
       <Typography variant="h4" textAlign="center">
@@ -56,28 +81,23 @@ export default function ParticipantsPage() {
               <StyledTableCell>Tên ứng viên</StyledTableCell>
               <StyledTableCell align="right">Email</StyledTableCell>
               <StyledTableCell align="right">Địa điểm</StyledTableCell>
-              <StyledTableCell align="right">Phê duyệt</StyledTableCell>
+              <StyledTableCell align="right">Xác nhận</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
+            {tempUsers?.map((user) => (
+              <StyledTableRow key={user?.name}>
                 <StyledTableCell component="th" scope="row">
-                  quyhoa
+                  {user?.name}
                 </StyledTableCell>
+                <StyledTableCell align="right">{user?.email}</StyledTableCell>
                 <StyledTableCell align="right">
-                  quyhoa@gmail.com
+                  {user?.location || "Ho Chi Minh"}
                 </StyledTableCell>
-                <StyledTableCell align="right">Ho Chi Minh</StyledTableCell>
                 <StyledTableCell align="right" sx={{ padding: 0 }}>
-                  <Stack direction="row" spacing={2} sx={{ display: "block" }}>
-                    <Button size="small">
-                      <CheckCircleIcon color="#fff" />
-                    </Button>
-                    <Button size="small">
-                      <DeleteIcon color="#fff" />
-                    </Button>
-                  </Stack>
+                  <Button onClick={() => handleApproved(user?.id, eventId)}>
+                    <CheckCircleIcon color="#fff" />
+                  </Button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}

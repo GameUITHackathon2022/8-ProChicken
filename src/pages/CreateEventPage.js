@@ -1,36 +1,43 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../components/Input";
 import Layout from "../components/Layout";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useUserContext } from "../context/UserContext";
+import { createEvent } from "../api/user";
+import { useNavigate } from "react-router-dom";
 
 const CreateEventPage = () => {
   const [content, setContent] = useState("");
   const { control, watch, setValue, handleSubmit, getValues, reset } = useForm({
     mode: "onChange",
-    defaultValues: {
-      title: "",
-      image: "",
-    },
   });
 
-  const modules = useMemo(
-    () => ({
-      toolbar: [
-        ["bold", "italic", "underline", "strike"],
-        ["blockquote", "code-block"],
-        [{ header: 1 }, { header: 2 }], // custom button values
-        [{ list: "ordered" }, { list: "bullet" }],
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        ["link", "image"],
-      ],
-    }),
-    []
-  );
+  const ref = useRef();
 
-  const handleAddPost = (value) => {
+  const { user } = useUserContext();
+
+  const onChange = (content, delta, source, editor) => {
+    const contentFromReactQuill = editor.getContents().ops[0].insert;
+    setContent(contentFromReactQuill);
+    console.log(content);
+  };
+
+  const navigate = useNavigate();
+
+  const handleAddPost = async (value) => {
+    // delete value["author"];
+    value.description = content;
+    value.userCreated = `${user.id}`;
     console.log(value);
+    try {
+      const data = await createEvent(value);
+      console.log(data, "backend");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -43,7 +50,7 @@ const CreateEventPage = () => {
           Tạo bài viết
         </h2>
         <Layout>
-          <div className="flex flex-col font-semibold gap-y-3">
+          <div className="flex flex-col font-semibold gap-y-3 w-[300px]">
             <label htmlFor="name" className="flex items-center gap-x-2">
               Tên bài viết
               <span className="text-red-500">*</span>
@@ -52,72 +59,70 @@ const CreateEventPage = () => {
               control={control}
               name="name"
               type="text"
-              placeholder="Enter your title"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
+              placeholder="Nhập tên bài viết"
             ></Input>
           </div>
-          <div className="flex flex-col font-semibold gap-y-3">
-            <label htmlFor="author" className="flex items-center gap-x-2">
-              Tác giả
+          <div className="flex flex-col font-semibold gap-y-3 w-[300px]">
+            <label htmlFor="location" className="flex items-center gap-x-2">
+              Địa chỉ
               <span className="text-red-500">*</span>
             </label>
             <Input
               control={control}
-              name="author"
+              name="location"
               type="text"
-              placeholder="Enter your name"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
+              placeholder="Nhập địa chỉ tổ chức"
             ></Input>
           </div>
         </Layout>
         <Layout>
-          {/* <div className="flex flex-col font-semibold gap-y-3">
-            <label htmlFor="image" className="flex items-center gap-x-2">
-              Image
+          <div className="flex flex-col font-semibold gap-y-3 w-[300px]">
+            <label htmlFor="company" className="flex items-center gap-x-2">
+              Đơn vị
               <span className="text-red-500">*</span>
             </label>
-            <ImageUpload
-              className="h-[300px] shadow-lg mb-5"
-              progress={0}
-              image={""}
-            ></ImageUpload>
-          </div> */}
-          <div className="flex flex-col font-semibold gap-y-3">
-            <label htmlFor="greenpoint" className="flex items-center gap-x-2">
+            <Input
+              control={control}
+              name="company"
+              type="text"
+              placeholder="Nhập nơi công tác của bạn"
+            ></Input>
+          </div>
+          <div className="flex flex-col font-semibold gap-y-3 w-[300px]">
+            <label htmlFor="greenPoint" className="flex items-center gap-x-2">
               Green Point
               <span className="text-red-500">*</span>
             </label>
             <Input
               control={control}
-              name="greenpoint"
+              name="greenPoint"
               type="text"
-              placeholder="Enter your green point"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
+              placeholder="Nhập số green point"
             ></Input>
           </div>
         </Layout>
         <Layout>
           <div className="flex flex-col mb-20 font-semibold gap-y-3">
             <label htmlFor="image" className="flex items-center gap-x-2">
-              Content
+              Nội dung
               <span className="text-red-500">*</span>
             </label>
             <div className="w-full entry-content">
-              <ReactQuill
-                modules={modules}
-                theme="snow"
+              <textarea
+                className="w-full h-[300px] resize-none border-2	border-primary
+                active:border-green-500 transition p-4
+              "
                 value={content}
-                onChange={setContent}
-                className="h-[300px]"
-              />
+                onChange={(e) => setContent(e.target.value)}
+              ></textarea>
             </div>
           </div>
         </Layout>
         <button
           type="submit"
-          className="p-5 px-10 text-white bg-orange-400 rounded-md"
+          className="p-3 px-10 text-white font-semibold bg-primary rounded-md"
         >
-          Add new post
+          Tạo sự kiện
         </button>
       </form>
     </div>

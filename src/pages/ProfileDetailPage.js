@@ -12,10 +12,10 @@ const ProfileDetailPage = () => {
     },
   });
   return (
-    <div className="page-container">
+    <div className="page-container border-primary">
       <form
         onSubmit={handleSubmit()}
-        className="flex flex-col items-center justify-center p-10"
+        className="flex flex-col items-center justify-center"
       >
         <h2 className="mb-10 text-2xl font-semibold text-center">
           Thông tin cá nhân
@@ -30,7 +30,6 @@ const ProfileDetailPage = () => {
               name="fullname"
               type="text"
               placeholder="Update your fullname"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
             ></Input>
           </div>
           <div className="flex flex-col font-semibold gap-y-3">
@@ -42,7 +41,6 @@ const ProfileDetailPage = () => {
               name="email"
               type="email"
               placeholder="Update your email address"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
             ></Input>
           </div>
         </Layout>
@@ -56,19 +54,17 @@ const ProfileDetailPage = () => {
               name="password"
               type="password"
               placeholder="Update your password"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
             ></Input>
           </div>
           <div className="flex flex-col font-semibold gap-y-3">
             <label htmlFor="company" className="flex items-center gap-x-2">
-              Your company
+              Đơn vị
             </label>
             <Input
               control={control}
               name="company"
               type="text"
               placeholder="Update your company"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
             ></Input>
           </div>
         </Layout>
@@ -82,19 +78,17 @@ const ProfileDetailPage = () => {
               name="mssv"
               type="text"
               placeholder="Update your Student ID"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
             ></Input>
           </div>
           <div className="flex flex-col font-semibold gap-y-3">
             <label htmlFor="location" className="flex items-center gap-x-2">
-              Your location
+              Địa chỉ
             </label>
             <Input
               control={control}
               name="location"
               type="text"
               placeholder="Update your location"
-              className="p-5 mb-6 border-2 border-orange-400 rounded-md w-[400px]"
             ></Input>
           </div>
         </Layout>

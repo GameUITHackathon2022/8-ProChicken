@@ -9,13 +9,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { Button, Icon } from "@mui/material";
+import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import logoImg from "../assets/logo.png";
 import { useUserContext } from "../context/UserContext";
 
-const pages = ["Home", "Your Events", "Joined Events"];
+const pages = ["Trang chủ", "Sự kiện đã tạo", "Sự kiện tham gia"];
 const navList = ["/", "/your-events", "/joined-events"];
 
 export default function MenuAppBar() {
@@ -43,7 +43,7 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   };
 
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
 
   const handleSignout = () => {
     localStorage.removeItem("user");
@@ -82,8 +82,11 @@ export default function MenuAppBar() {
               </Button>
             ))}
           </Box>
-          {auth && (
-            <div>
+          {user && (
+            <div className="flex items-center">
+              <Typography variant="subtitle1" color="#fff">
+                Green point: {user?.greenPoint}
+              </Typography>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -110,15 +113,15 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <Link to="/user-detail">My profile</Link>
+                  <Link to="/user-detail">Hồ sơ</Link>
                 </MenuItem>
 
                 <MenuItem onClick={handleClose}>
-                  <Link to={`/create-event/userId`}>Viết bài</Link>
+                  <Link to={`/create-event/${user?.id}`}>Viết bài</Link>
                 </MenuItem>
 
                 <MenuItem onClick={handleClose}>
-                  <Link to="/signup" onClick={handleSignout}>
+                  <Link to="/signin" onClick={handleSignout}>
                     Đăng xuất
                   </Link>
                 </MenuItem>

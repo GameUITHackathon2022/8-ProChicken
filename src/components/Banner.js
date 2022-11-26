@@ -2,7 +2,7 @@ import { Typography, Paper, Box, Grid } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 
 const url =
-  "https://cdn.dribbble.com/userupload/4025538/file/original-a80f539bc1af0021d43230c38a67d759.png?compress=1&resize=400x300&vertical=top";
+  "https://images.unsplash.com/photo-1433185000771-ec45c869c61b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80";
 
 function Banner({ urlImage }) {
   return (
@@ -29,7 +29,6 @@ function Banner({ urlImage }) {
           right: 0,
           left: 0,
           backgroundColor: "rgba(0,0,0,.3)",
-          borderRadius: "1em",
         }}
       />
       <Grid container>

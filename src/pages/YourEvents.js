@@ -93,7 +93,7 @@ export default function YourEventsPage() {
                     variant="outlined"
                     size="small"
                     onClick={() => {
-                      navigate(`/event-detail/${row.id}`);
+                      navigate(`/your-events/${row.id}`);
                     }}
                   >
                     Chi tiết

@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getEventById, joiningEvent } from "../api/user";
 import { useUserContext } from "../context/UserContext";
 
+const defaultUrl =
+  "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1313&q=80";
 const EventDetailPage = () => {
   const [event, setEvent] = useState("");
 
@@ -50,9 +52,9 @@ const EventDetailPage = () => {
             <div className="flex justify-center gap-x-10 ">
               <div className="image w-[300px] h-[300px] rounded-lg">
                 <img
-                  src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80"
-                  alt=""
-                  className="w-full h-full rounded-lg"
+                  src={defaultUrl}
+                  alt="img-detail"
+                  className="w-full h-full rounded-lg object-cover"
                 />
               </div>
               <div className="flex flex-col">
@@ -69,8 +71,8 @@ const EventDetailPage = () => {
             <div className="">
               {!isJoined ? (
                 <button
-                  className="px-8 py-2 w-fit text-white bg-orange-400 rounded-md
-                hover:bg-orange-500 transition
+                  className="px-8 py-2 w-fit text-white bg-primary rounded-md
+                hover:bg-green-700 transition
               "
                   onClick={() => handleJoin(event.id)}
                 >
@@ -89,8 +91,8 @@ const EventDetailPage = () => {
               )}
             </div>
           </div>
-          <div>
-            <span>{event?.description || "Nội dung rỗng"}</span>
+          <div className="font-xl">
+            <p className="text-xl">{event?.description}</p>
           </div>
         </div>
       </Container>
