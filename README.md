@@ -1,5 +1,5 @@
 # 8-ProChicken
-## Giới thiệu PCV:
+## Giới thiệu PCV (Pro Chicken Volunteer):
 PCV là một nền tảng cho phép kết nối người tình nguyện với người tổ chức hoạt động tình nguyện. Các hoạt động tình nguyện sẽ được hệ thống hóa giúp cho tình nguyện viên có thể dễ dàng xem những hoạt động mình có thể tham gia cũng như nhà tình nguyện có thể dễ dàng tạo ra các hoạt động tình nguyện của mình. Ứng với mỗi hoạt động bạn được xác nhận tham gia thì bạn sẽ nhận được một lượng GreenPoint tương ứng. GreenPoint là điểm dùng để đánh giá mức độ tích cực trong quá trình tham gia công tác xã hội cuả mình. Càng nhiều điểm GreenPoint có nghĩa là bạn càng tích cực trong các hoạt động công tác xã hội. Ứng với mỗi hoạt động sẽ có một lượng điểm GreenPoint khác nhau để đánh giá mức độ ảnh hưởng của hoạt động đó đến môi trường. Ngoài ra nếu bạn là sinh viên có thể điền vào thông tin trường và mã số sinh viên. Nhờ đó các trường đại học có thể dựa vào danh sách các mã số sinh viên để xem xét cộng điểm rèn luyện hay xét sinh viên 5 tốt.
 ## Các tính năng chính:
 - Sign in và Sign up
