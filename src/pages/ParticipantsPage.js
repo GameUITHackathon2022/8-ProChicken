@@ -51,7 +51,6 @@ export default function ParticipantsPage() {
 
   let tempUsers = [];
   for (let user of users) {
-    const isBreak = false;
     for (let eventIdByUser of user.listEvent) {
       if (eventIdByUser === parseInt(eventId)) {
         tempUsers.push(user);
@@ -72,7 +71,7 @@ export default function ParticipantsPage() {
   return (
     <Container sx={{ marginTop: "40px" }}>
       <Typography variant="h4" textAlign="center">
-        Tất cả các ứng viên tham gia sự kiện {`name`}
+        Tất cả các ứng viên tham gia sự kiện
       </Typography>
       <TableContainer component={Paper} sx={{ margin: "40px 0" }}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">

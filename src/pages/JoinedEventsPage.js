@@ -59,9 +59,6 @@ export default function JoinedEventsPage() {
     event.listUser.includes(user.id)
   );
 
-  console.log(joinedListEvents, "joinedlists");
-  console.log("user", user);
-
   return (
     <Container sx={{ marginTop: "40px" }}>
       <Typography variant="h4" textAlign="center">
