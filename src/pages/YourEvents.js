@@ -76,7 +76,6 @@ export default function YourEventsPage() {
               <StyledTableCell>Tên sự kiện</StyledTableCell>
               <StyledTableCell align="right">Địa điểm</StyledTableCell>
               <StyledTableCell align="right">Xem thêm</StyledTableCell>
-              <StyledTableCell align="right">Trạng thái</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -98,18 +97,6 @@ export default function YourEventsPage() {
                   >
                     Chi tiết
                   </Button>
-                </StyledTableCell>
-                <StyledTableCell align="right" sx={{}}>
-                  {isApproved ? (
-                    <CheckCircleIcon color="#fff" />
-                  ) : isChecked ? (
-                    <HighlightOffIcon
-                      color="red"
-                      sx={{ color: "red !important" }}
-                    />
-                  ) : (
-                    <AutorenewOutlinedIcon />
-                  )}
                 </StyledTableCell>
               </StyledTableRow>
             ))}
